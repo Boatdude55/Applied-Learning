@@ -1,0 +1,139 @@
+https://preview.c9users.io/boatrider/demo-project/frame.png
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="ex.css" type="text/css" />
+    </head>
+<body>
+    <div id="file-choice">
+        <input type="file" id="file"/></input>
+        <button id="submit">submit</button>
+    </div>
+    
+    <img id="img" src="" height="200" alt="Image preview...">
+    <!--<div id="img-area">
+        <div id="image-effects">
+            <div>
+                <button id="invertbtn">Invert</button>
+            </div>
+             
+            <div>
+                <button id="grayscalebtn">Gray Scale</button>
+            </div>
+            
+            <div>
+                <input type="text" id="percent"/>
+                <button id="posterizebtn">Posterize</button>
+            </div>
+            
+            <div>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+        
+        <canvas id="canvas"></canvas>
+    </div>-->
+    
+    <script type="text/javascript">
+        var data, ctx, imageData;
+        var img = document.getElementById("img");
+        var input_file, file_name, file_type;
+        var file_reader = new FileReader();
+        
+    
+        window.addEventListener("load",function(){
+            var submit = document.getElementById("submit");
+            submit.addEventListener("click",setImg);
+        });
+    
+        function setImg(){
+            img = document.createElement("img");
+            input_file = document.getElementById("file").files[0];
+            alert(input_file);file_reader.readAsDataURL(input_file);
+            file_reader.addEventListener("load", function () {
+                alert("getting img");
+                img.src = file_reader.result;
+            }, false);
+            
+            
+            /**img.onload = function() {
+              draw(this);
+            };**/
+        }  
+        
+        /**function draw(img) {
+            var canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            img.style.display = 'none';
+            imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            data = imageData.data;
+            
+            var invertbtn = document.getElementById('invertbtn');
+            invertbtn.addEventListener('click', invert);
+            var grayscalebtn = document.getElementById('grayscalebtn');
+            grayscalebtn.addEventListener('click', grayscale);
+            var posterizenbtn = document.getElementById("posterizebtn");
+            posterizenbtn.addEventListener("click", posterize);
+            var resetbtn = document.getElementById("reset");
+            resetbtn.addEventListener("click", resetImg);
+        }    
+        
+            var resetImg = function(){
+                alert("reseting");
+                ctx.drawImage(img, 0, 0);
+                //ctx.putImageData(imageData, 0, 0);
+            };
+            
+            var invert = function() {
+                alert("inverting");
+                var invertData = data;
+                var invert_imageData = imageData;
+                for (var i = 0; i < data.length; i += 4) {
+                  invertData[i]     = 255 - invertData[i];     // red
+                  invertData[i + 1] = 255 - invertData[i + 1]; // green
+                  invertData[i + 2] = 255 - invertData[i + 2]; // blue
+                }
+                ctx.putImageData(invert_imageData, 0, 0);
+            };
+        
+            var grayscale = function() {
+                alert("scaling");
+                var grayscaleData = data;
+                var grayscale_imageData = imageData;
+                for (var i = 0; i < grayscaleData.length; i += 4) {
+                  var avg = (grayscaleData[i] + grayscaleData[i + 1] + grayscaleData[i + 2]) / 3;
+                  grayscaleData[i]     = avg; // red
+                  grayscaleData[i + 1] = avg; // green
+                  grayscaleData[i + 2] = avg; // blue
+                }
+                ctx.putImageData(grayscale_imageData, 0, 0);
+            };
+          
+            function Brightness(red, grn, blu)
+            {
+                return (0.2126 * red + 0.7152 * grn + 0.0722 * blu + 0.5) ;
+            }
+
+            var posterize = function(){
+                alert("posterizing");
+                var posterizeData = data;
+                var posterize_imageData = imageData;
+                var percent = parseInt(document.getElementById("percent").value, 10);
+                percent = percent/100;
+        	    var threshold = (percent * 255 + 50) / 100 ;
+        	    
+                for (var i = 0; i < posterizeData.length; i += 4) {
+                  var level = (Brightness(posterizeData[i], posterizeData[i + 1], posterizeData[i + 2]) >= threshold) ? 255 : 0 ;
+                  alert(level);
+                  posterizeData[i]     = level; // red
+                  posterizeData[i + 1] = level; // green
+                  posterizeData[i + 2] = level; // blue
+                  
+                }
+                ctx.putImageData(posterize_imageData, 0, 0);
+        	};**/
+    </script>
+</body>
+ 
+</html>

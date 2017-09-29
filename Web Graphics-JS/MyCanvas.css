@@ -1,0 +1,29 @@
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;    
+}
+
+#media-upload-area{
+    height: 20%;
+}
+
+#main-content{
+    height: 80%;
+    width: 100%;
+}
+
+#localfile-media-upload-area{
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+/*canvas { 
+        padding:8px;
+        background: #eee;
+        display: inline-block; 
+        margin: 0 auto; 
+}*/
