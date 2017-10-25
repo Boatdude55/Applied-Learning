@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>EDP Splash</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=0.5">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/javascripts/jquery.min.js"><\/script>')</script>
+		<script>var preload = <%- JSON.stringify(preload) %>;</script>
+		<script src="/javascripts/splash.js"></script>
+		<!-- Page Notes:
+			This page is using all custom styles, which is a good choice when you have a simple
+			and/or unusual design and a well-formed idea of what you want it to look like.
+			
+			This page is using an Express directive to preload the splash content from the
+			database. Otherwise, it would be necessary to wait for this page to finish loading,
+			then make a separate request for the content (which is 90% of the page). That would
+			take a while and look bad to users, so we preload it. The reason it comes through in
+			the same JSON format as a splash content request, rather than being inserted directly
+			into the document, is that allows us to use the same client code for both paths, and
+			have minimal additional work on the server side.
+		-->
+	</head>
+	<body>
+		<div id="action-c">
+			<a id="content-link" href="/actions"></a>
+		</div>
+		<div class="wrap">
+			<div id="content"></div>
+		</div>
+	</body>
+</html>

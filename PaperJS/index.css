@@ -1,0 +1,14 @@
+document{
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    height: inherit;
+    width: inherit;
+}
+
+canvas{
+    height: inherit;
+    width: inherit;
+}

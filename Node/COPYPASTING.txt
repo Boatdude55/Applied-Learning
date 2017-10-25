@@ -1,0 +1,140 @@
+## Slide 12
+```javascript
+var db = new sqlite3.Database("splashes.db");
+db.serialize(function(){
+	db.run("CREATE TABLE IF NOT EXISTS splashes (id INTEGER, content TEXT, PRIMARY KEY(`id`));");
+});
+```
+
+## Slide 13
+```javascript
+app.use('/', require('./routes/splash’));
+app.use('/actions', require('./routes/actions’));
+```
+
+## Slide 16
+```javascript
+function computeData(data, operation, callback) {
+	$.post(
+		"/actions/compute",
+		{data: parseInt(data), operation: operation},
+		function(result) {
+			if (typeof callback === 'function’)
+				callback(result.result);
+		},
+		"json“
+	);
+}
+```
+
+## Slide 17
+```javascript
+	x = parseFloat(req.body.data);
+	result = 0;
+	switch (req.body.operation) {
+		case "fac":
+			result = factorial(x);
+			break;
+		case "ex":
+			result = Math.pow(Math.E, x);
+			break;
+		case "sine":
+			result = Math.sin(x);
+			break;
+	}
+```
+
+## Slide 18
+```javascript
+$("#goCompute").click(function(){
+	computeData(
+		$("#computeData").val(),
+		$("#computeOperation").val(),
+		function(result){
+			$("#computeResult").text(result).show();
+		}
+	);
+});
+```
+
+## Slide 19
+```javascript
+	if (!(req.body.data && req.body.operation)) {
+		res.status(400);
+		res.send({error: 'malformed request’});
+		return;
+	}
+```
+
+```javascript
+		default:
+			res.status(400);
+			res.send({error: 'invalid operation’});
+			return;
+```
+
+## Slide 20
+```javascript
+			if (result.error) {
+				console.log(result.error);
+				return;
+			}
+```
+
+## Slide 24
+```javascript
+router.post('/splash', function(req, res) {
+	if (typeof req.body.content !== 'string') {
+		res.status(400);
+		res.send({error: 'malformed request’});
+		return;
+	}
+	
+	var stmt = db.prepare('INSERT INTO splashes (content) VALUES ((?));');
+	stmt.run(req.body.content);
+	stmt.finalize();
+	
+	res.status(200);
+	res.send();
+});
+```
+
+## Slide 25
+```javascript
+	setSplash(preload.content);
+	window.setInterval(checkSplashContent, 5000);
+```
+
+```javascript
+function checkSplashContent() {
+	$.get(
+		"/splashcontent",
+		setSplash,
+		"html"
+	);
+}
+```
+
+## Slide 26
+```javascript
+function getSplashContent(id, after) {
+	var query = 'SELECT content FROM splashes ORDER BY id DESC LIMIT 1;’;
+	if (typeof id === 'number’) {
+		query = 'SELECT content FROM splashes WHERE id=\''+id+'\' LIMIT 1;’;
+	}
+	
+	db.all(query, function(err, content){
+		if(!err)
+			after(content[0]);
+	});
+}
+```
+
+```javascript
+router.get('/splashcontent', function(req, res, next) {
+	getSplashContent(null, function(content){
+		res.type('html’);
+		res.send(content.content);
+	});
+});
+```

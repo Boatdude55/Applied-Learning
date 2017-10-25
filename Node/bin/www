@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+//Quick note: Most of this code was adapted from various Node webserver samples found somewhere on
+//the internet, quite a while ago. So someone out there deserves credit for it!
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('src:server');
+var http = require('http');
+var https = require('https');
+var crypto = require('crypto'),
+ fs = require("fs");
+
+/**
+ * Create HTTP(S) server.
+ */
+
+var server;
+
+
+if (fs.existsSync('keys')) {
+  //ssl config
+  var privateKey = fs.readFileSync('keys/privkey.pem');
+  var certificate = fs.readFileSync('keys/cert.pem');
+  var options = {key: privateKey,cert: certificate};
+  
+  app.set('port', '443');
+  server = https.createServer(options, app); //secure http server
+  
+  http.createServer(function (req, res) { //http->https forwarding
+    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+    res.end();
+  }).listen('80');
+} else {
+  app.set('port', '80');
+  server = http.createServer(app); //plain http server
+}
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(app.get('port'));
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+// Redirect from http port 80 to https
+var http = require('http');

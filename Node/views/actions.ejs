@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>EDP Content Page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/javascripts/jquery.min.js"><\/script>')</script>
+		<script src="/javascripts/actions.js"></script>
+		<!-- Page Notes:
+			This page is using only Bootstrap for styles, which often makes it quicker to get a
+			good-looking result.
+			
+			This type of page, where changes can be made to the site's content, would generally be
+			by some authentication system (such as Passport). However, that is beyond the scope of
+			this class.
+			
+			While the interactive content seems it would logically equate to forms, we do not use
+			these to avoid the process of capturing the form submission to stop the browser from
+			navigating away, and instead sending an AJAX request. Instead, we just use controls
+			outside of a form, and directly bind Javascript handlers to the "submit buttons".
+		-->
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Easy Data Page</a>
+			<div>
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container mt-4">
+			<div class="card my-2">
+				<div class="card-body">
+					<h4 class="card-title">Compute Some Data</h4>
+					<p class="card-text">Send some inputs to the server for number crunching, and get a result right here on the same page.</p>
+					<div>
+						<div class="form-group form-inline">
+							<label for="computeData">x = </label>
+							<input type="number" class="form-control ml-1" id="computeData" />
+						</div>
+						<div class="form-group">
+							<label for="computeOperation">HTML Content</label>
+							<select class="form-control" id="computeOperation">
+								<option value="fac">x!</option>
+								<option value="ex">e^x</option>
+								<option value="sine">sin(x)</option>
+							</select>
+						</div>
+						<button id="goCompute" class="btn btn-primary">Compute</button>
+					</div>
+					<div class="alert alert-success mt-3 mb-0" style="display: none" id="computeResult"></div>
+				</div>
+			</div>
+			<div class="card my-2">
+				<div class="card-body">
+					<h4 class="card-title">Set the Splash Screen</h4>
+					<p class="card-text">Change what's being shown on the home page for everyone instantly, even if they've already loaded the page.</p>
+					<div>
+						<div class="form-group">
+							<label for="splashContent">HTML Content</label>
+							<textarea class="form-control" id="splashContent" rows="5"></textarea>
+						</div>
+						<button id="setSplash" class="btn btn-primary">Set</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
