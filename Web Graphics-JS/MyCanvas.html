@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="MyCanvas.css" type="text/css" />
+    </head>
+    
+    <body>
+        <div id="media-upload-area">
+            <div id="media-upload-content">
+                <div id="externalfile-media-upload-"></div>
+                
+                <div id="localfile-media-upload">
+                    <form id="localfile-media-upload-form" action="ex1.php" target="media-frame" method="post" enctype="multipart/form-data">
+                        <input type="file" id="localfile-media-input" name="media-file"/>
+                        <input type="submit" id="localfile-media-submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>  
+        
+        <div id="main-content">
+            <div id="post-result"></div>
+            <iframe name="media-frame"></iframe>
+            <iframe src="UploadedMedia.html" id="localfile-media-upload-area">  
+            </iframe>
+        </div>
+    </body>
+    <!--
+    <script type="text/javascript" src="">
+        function PosttoPHP(){
+            var xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function() {
+                if (this.readyState==4 && this.status==200) {
+                  document.getElementById("post-result").innerHTML=this.responseText;
+                }
+          };
+                  xmlhttp.open("GET","ex1.php?q="+this.innerHTML,true);
+                  xmlhttp.send();
+        }
+    </script>
+    -->
+</html>

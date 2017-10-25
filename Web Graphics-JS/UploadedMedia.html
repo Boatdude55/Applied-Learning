@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link rel="stylesheet" href="UploadedMedia.css" type="text/css" />-->
+    </head>
+    <body>
+        <div id="InputContent">
+            <form>
+                <div id="frame-timerange">
+                    <input id="startTime" type="text" value=""/>
+                    <input id="endTime" type="text" value=""/>
+                </div> 
+                
+                <div>
+                    <button id="SubmitTimes" type="button">Get Frames</button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="media-uploaded"> Uploaded Media Displays Here
+            <div id="video-media">
+                <video width="320" height="240" controls>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+
+            <div id="img-media">
+                <img src="" alt="roto-img"></img>
+            </div>
+        </div>
+        
+        <div id="frames-area">
+            <p>Getting video frames in background...</p>
+            <p>Getting image</p>
+            <div id="video-frames">Video frames appear here</div>
+            <div id="img-frames">Images appear here</div>
+        </div>
+    
+        <script>
+            /**
+             * Variables for getting local media file
+             * */
+             
+        
+            /**
+             * Variables for InputContent event handling
+            **/
+            var Submit = document.getElementById("SubmitTimes");
+            var StartTime = document.getElementById("startTime");
+            var EndTime = document.getElementById("endTime");
+            var SetTimes = [StartTime, EndTime];
+            var times = [0,0];
+            
+            /**
+             * Variables for Video handling
+            **/
+            var video = document.createElement("video");
+            video.preload = "auto";
+            video.src = "video.mp4";
+            var framesArea = document.getElementById("frames");
+            var canvas;
+            var frame;
+            var fps = 1/4;//gives me 4 fps
+            
+            
+            video.addEventListener('loadeddata', function() {
+                /**
+             * event makes sure video is fully loaded
+             * sets the playback time to 0
+             **/
+             video.currentTime = 0;
+            }, false);
+            
+            Submit.addEventListener("click", function GetFrames(){
+                /**
+                 * event used to trigger getting of video frames
+                 **/
+                 
+                if(framesArea.childElementCount > 0){
+                    /**
+                     * reloading the video so there are no playback issues
+                     * might remove later
+                     * */
+                    video.load();
+                }
+                
+                /**
+                 * Might turn this into a function later
+                 * */
+                var j=0;
+                for(let i of SetTimes){
+                    /**
+                     * Converts the times into a format
+                     * that video events can use 
+                     * Take substrings using the colon as base
+                     * parse substrings to ints
+                     * multiply string1 by 60 and add on string2 for a time
+                    **/
+                    var x = parseInt(i.value.substr(0, i.value.length - 3), 10);
+                    var y = parseInt(i.value.substr(i.value.length - 2), 10);
+                    i = (x*60) + y;
+                    times[j] = i;
+                    j++;
+                }
+                
+                video.currentTime = times[0];//setting a new currentTime triggers seeking
+                video.addEventListener('seeked', function() {
+                    /**Event is triggered when seeking is done
+                     * generateThumbnail() will get the currentTime and convert it to canvas element
+                     * */
+                    generateThumbnail(times[0]);
+                    
+                    /**when frame is captured, increase with fps trying to get a decent framerate
+                     * keep in mind this for rotoscoping so the framerate may not have to be that high
+                     * */
+                    times[0]+=fps;
+                                
+                   //if still in seeking range
+                    if (times[0] <= times[1]) {
+                        //another seeked event triggered
+                        video.currentTime = times[0];
+                    }
+                	else {
+                        //getting a nodelist of the newly made canvas elements
+                        canvas = document.getElementsByClassName("frame-canvas");
+                        
+                		for(var i=0;i<canvas.length;i++){
+                		    /**
+                		     * looping through nodelist and adding click event for multiple downloads
+                		     * Trying to find a JS cross browser solution for multiple downloads
+                		     * Will turn into its own function
+                		     * */
+                		    canvas[i].addEventListener("click", function(e){
+                                /**
+                                 * canvas is inside an anchor tag
+                                 * user clicks canvas, but click event is on the anchor tag
+                                 * bubbling cause click to trigger anyways
+                                 * use event.target to get canvas
+                                 * use this to manipulate anchor tag
+                                 * */
+                                var filename = "frame.png";
+                                frame = e.target;
+                                this.href = frame.toDataURL();
+                                this.download = filename;
+                                framesArea.removeChild(this);
+                            }, false);
+                		}
+                    }
+            
+                }, false);
+            });
+            
+           
+            
+            function generateThumbnail(){
+                if(framesArea.innerHTML == "Getting frames in background..."){
+                    //Get rid of this if/else later
+                    framesArea.innerHTML = '';
+                }else {
+                    var a = document.createElement("a");
+                    var c = document.createElement("canvas");
+                    a.className = "frame-canvas";
+                    a.appendChild(c);
+                    
+                    var ctx = c.getContext("2d");
+                    c.width = 160;
+                    c.height = 90;
+                    ctx.drawImage(video, 0, 0, 160, 90);
+                    framesArea.appendChild(a);
+                }
+            }
+            
+        </script>
+    </body>
+</html>
