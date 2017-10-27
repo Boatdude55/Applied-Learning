@@ -1,0 +1,16 @@
+#matricesContainer input{
+    width: 20px;
+}
+
+.matrixContainer{
+    width: 25%;
+    float: left;
+}
+
+.matrixTable td{
+    
+}
+
+#matrixOps{
+    float: right;
+}

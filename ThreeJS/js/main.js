@@ -8,7 +8,7 @@ const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHe
 
 	function MatrixHandler () {
 
-        var MatrixCache = [];
+        let MatrixCache = [];
 
         var updateMatrixCache = function ( sceneVectors ) {
 
@@ -146,9 +146,9 @@ const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHe
             	linewidth: 2,
         } );
         
-		var xGrid = new THREE.LineSegments(geometryX, AxisMaterial);
-		var yGrid = new THREE.LineSegments(geometryY, AxisMaterial);
-		var zGrid = new THREE.LineSegments(geometryZ, AxisMaterial);
+		const xGrid = new THREE.LineSegments(geometryX, AxisMaterial);
+		const yGrid = new THREE.LineSegments(geometryY, AxisMaterial);
+		const zGrid = new THREE.LineSegments(geometryZ, AxisMaterial);
 		
 		coordinateSystem.push(xGrid, yGrid, zGrid);
 		
@@ -167,47 +167,22 @@ const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHe
         };
     }
 
+    function addition ( lOperand, rOperand ) {
+console.log(lOperand.geometry.vertices);
+           lOperand.geometry.vertices[1].translate(-1,-2,-3);
+    }
 /////////////////////////////////////////Function/Obj Testing//////////////////////////////////
-		var newGrid = createGrid();
+		let newGrid = createGrid();
 
-        var testVectors = [[1, 2, 3], [4, 5, 2], [7, 5, 9]];
+        let testVectors = [[1, 2, 3], [4, 5, 2], [7, 5, 9]];
         
-        var additionTest = [[1,0], [0,1]];
-
-        function addition ( vectors ) {
-
-            // i,j = 0; size = m*n; Sigma( v1(i,j) + v2(i,j) +...+ vn(i,j) )
-            
-            let sumVector = vectors[0].map(function (_, i) {
-
-                        vectors.reduce( function (p, _, j) {
-
-                    return p + vectors[j][i];
-                    }, 0);
-                });
-            
-            return sumVector;    
-        }
-
-        let reslutantVector = addition(additionTest);
-        
-        function createKeyFrame ( vector, sum) {
-
-            let time = [0,3], values = [];
-
-            const trackName = 'shiftRightOperand';
-
-            var keyframes = new THREE.KeyframeTrack(trackName, time, values);
-
-            
-        }
         const matrixHandler = new MatrixHandler();
         let points, newVectors;
 
         points = matrixHandler.setVectorsData(testVectors);
 
         newVectors = matrixHandler.createVectors(points);
-
+        addition(newVectors[0]);
         const sceneSetter = new SceneHandler();
 
         sceneSetter.addNewObj([newGrid, newVectors]);

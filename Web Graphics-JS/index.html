@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <script type="text/javascript" src="js/main.js">
+            
+        </script>
+    </head>
+    
+    <body>
+        <div id="head-content">
+            <div id="file-choice">
+                <input type="file" id="file"/></input>
+                <button class="button" id="submit">submit</button>
+            </div>
+            
+            
+            <div id="image-effects">
+
+                    <button class="button" id="greyscalebtn">Gray Scale</button>
+
+                    <button class="button" id="smoothbtn">Smooth</button>
+
+                    <button class="button" id="edgebtn">Edge Detect</button>
+
+                    <button class="button" id="invertbtn">Invert</button>
+
+                    <button class="button" id="reset">Reset</button>
+
+            </div>    
+        </div>
+        
+        <div id="videoFileContainer">
+
+            <div class="top-wrapper">
+
+                <div id="vidContainer">
+                    <form>
+                        <div id="frame-timerange">
+                            <input id="startTime" type="text" value=""/>
+                            <input id="endTime" type="text" value=""/>
+                        </div> 
+                        
+                        <div>
+                            <button class="button" id="SubmitTimes" type="button">Get Frames</button>
+                        </div>
+                    </form>
+    
+                    <div id="media-uploaded">
+                        <div id="video-media">
+                            <video class="media" id="video" width="320" height="240" controls></video>
+                        </div>
+                    </div>
+                </div>
+    
+                <div id="frameContainer">
+                    <canvas id="selected-frame"></canvas>
+                </div>
+                
+            </div>
+            
+            <div class="bottom-wrapper" id="video-frames">Video frames appear here</div>
+
+        </div>
+        
+        <div id="imageFileContainer">
+            <canvas class="media" id="canvas"></canvas>
+        </div>
+
+    </body>
+</html>
