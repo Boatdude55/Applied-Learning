@@ -1,71 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css" type="text/css" />
-        <script type="text/javascript" src="js/main.js">
-            
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript" src="js/main.js"></script>
     </head>
     
     <body>
-        <div id="head-content">
-            <div id="file-choice">
-                <input type="file" id="file"/></input>
-                <button class="button" id="submit">submit</button>
-            </div>
-            
-            
-            <div id="image-effects">
-
-                    <button class="button" id="greyscalebtn">Gray Scale</button>
-
-                    <button class="button" id="smoothbtn">Smooth</button>
-
-                    <button class="button" id="edgebtn">Edge Detect</button>
-
-                    <button class="button" id="invertbtn">Invert</button>
-
-                    <button class="button" id="reset">Reset</button>
-
-            </div>    
-        </div>
-        
-        <div id="videoFileContainer">
-
-            <div class="top-wrapper">
-
-                <div id="vidContainer">
-                    <form>
-                        <div id="frame-timerange">
-                            <input id="startTime" type="text" value=""/>
-                            <input id="endTime" type="text" value=""/>
-                        </div> 
-                        
-                        <div>
-                            <button class="button" id="SubmitTimes" type="button">Get Frames</button>
-                        </div>
-                    </form>
-    
-                    <div id="media-uploaded">
-                        <div id="video-media">
-                            <video class="media" id="video" width="320" height="240" controls></video>
-                        </div>
-                    </div>
+        <div class="container-fluid">
+            <div id="head-content" class="row">
+                <div id="file-choice-container" class="col">
+                    <input type="file" id="file" class="form-control"/>
+                    <button id="submit" class="btn btn-primary">Submit</button>
                 </div>
+                
+                
+                <div id="image-effects-container" class="col">
+                        <button id="greyscalebtn" class="btn btn-primary">Gray Scale</button>
     
-                <div id="frameContainer">
+                        <button id="smoothbtn" class="btn btn-primary">Smooth</button>
+
+                        <button id="edgebtn" class="btn btn-primary">Edge Detect</button>
+
+                        <button id="invertbtn" class="btn btn-primary">Invert</button>
+
+                        <button id="reset" class="btn btn-primary">Reset</button>
+                </div>    
+            </div>
+
+            <div id="file-content" class="row">
+
+                <div id="media-container" class="col-md-2">
+                    <span class="dropdown">
+                        <span class="badge badge-primary btn btn-primary dropdown-toggle" data-toggle="dropdown">Get Frames</span>
+                        <div id="video-form-wrapper" class="form-group dropdown-menu">
+                            <form>
+                                <div id="frame-timerange">
+                                    <input id="startTime" type="text" placeholder="ex: 0:00" class="form-control"/>
+                                    <input id="endTime" type="text" placeholder="ex: 0:08" class="form-control"/>
+                                </div> 
+
+                                <div id="submit-wrapper">
+                                    <button id="SubmitTimes" type="button" class="btn btn-primary">Get Frames</button>
+                                </div>
+                            </form>
+                        </div>
+                    </span>
+                    <video class="media" id="video"></video>
+                    <canvas class="media" id="image"></canvas>
+                </div>
+
+                <div id="frame-container" class="col-md-8">Place holder for selected frame
                     <canvas id="selected-frame"></canvas>
                 </div>
                 
+                <div id="controls-menu-container" class="col-md-2">Place holder for controls menu</div>
+
             </div>
-            
-            <div class="bottom-wrapper" id="video-frames">Video frames appear here</div>
 
+            <div id="row-carousel-container" class="row">
+                <div id="col-carousel-container" class="col-md-12">
+                    <div id="frames" class="carousel slide" data-ride="carousel">
+                        <div id="video-frames" class="carousel-inner">Video frames appear here</div>
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#frames" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    
+                    <a class="carousel-control-next" href="#frames" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
         </div>
-        
-        <div id="imageFileContainer">
-            <canvas class="media" id="canvas"></canvas>
-        </div>
-
     </body>
 </html>

@@ -3,5 +3,5 @@
 
 long double Factorial(int n);
 
-double Vinomial(double x, int n);
+double Binomial(double x, int n);
 

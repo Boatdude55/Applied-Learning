@@ -1,4 +1,173 @@
 html, body{
-    height: 100%;
     width: 100%;
+    height: 100%;
+}
+/*////////////////////////////////////////
+Buttons
+*/
+.button{
+    display: inline-block;
+    background-color: rgb(100, 100,150);
+    color: white;
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    width: 120px;
+}
+.button:hover {
+    background-color: grey;
+    color: black;
+    font-size: large;
+    cursor: pointer
+}
+
+/*////////////////////////////////////////
+Input Button
+*/
+input{
+    padding: 10px;
+    background-color: rgb(50,100,100);
+    color: white;
+    text-align: center;
+    border: none;
+    margin: 10px;
+}
+/*////////////////////////////////////////
+Button and Input Button Container
+*/
+#head-content{
+    height: 15%;
+    width: 100%;
+    background-color: rgb(250,200,50);
+}
+#file-choice{
+    width: inherit;
+    height: 50%;
+    display: inline-block;
+    position: relative;
+}
+#file-choice div{
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    left: 10%;
+}
+#file-choice input{
+    width: 71%
+}
+#image-effects{
+    width: inherit;
+    height: 50%;
+    position: relative;
+}
+#image-effects div{
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    left: 10%;
+}
+#image-effects button{
+    width: 16%;
+}
+/*////////////////////////////////////////
+display video or image container onclick
+*/
+#imageFileContainer, #submit{
+    cursor: auto;
+}
+
+#videoFileContainer, #submit{
+    cursor: auto;
+}
+#canvas{
+    height: auto;
+    width: auto;
+}
+#imageFileContainer{
+    display: none;
+}
+
+#videoFileContainer{
+    display: none;
+}
+/*////////////////////////////////////////
+video container
+*/
+#videoFileContainer{
+    width: 100%;
+    height: 95%;
+}
+.top-wrapper{
+    width: inherit;
+    height: 50%;
+    overflow: hidden;
+    margin: 10px;
+}
+
+#vidContainer{
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+#form-wrapper{
+    width: 100%;
+    height: 20%;
+    border: solid;
+}
+
+#form-wrapper form{
+    width: inherit;
+    height: 100%;
+    position: relative;
+}
+
+#frame-timerange{
+    width: 70%;
+    height: 50%;
+    position: absolute;
+    left: 25%;
+}
+
+#submit-wrapper{
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    left: 25%;
+    top: 50%;
+}
+
+#submit-wrapper button{
+    width: 100%;
+}
+
+#video-media{
+    width: 100%;
+    height: 80%;
+    border: solid;
+}
+#frameContainer{
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+#frameContainer canvas{
+    width: 60%;
+    height: 100%;
+    cursor: pointer;
+    border-left: solid;
+    border-right: solid;
+}
+
+.bottom-wrapper{
+    border: solid;
+    width: inherit;
+    height: 50%;
+    overflow: scroll;
+    margin-top: 10px;
+}
+.frame-canvas:hover{
+    border: solid;
+    border-color: rgb(255,255,50);
+    cursor: pointer;
 }
