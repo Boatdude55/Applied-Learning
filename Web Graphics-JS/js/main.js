@@ -17,33 +17,48 @@ function typeMIME ( type ) {
 
 function initUI () {
 
-    const inputFile = document.getElementById("file").files[0];
+    const inputFile = document.getElementById("file").files;
     const container = document.getElementById("media-container");
-    let mime = typeMIME(inputFile.type);
+    //let mime = typeMIME(inputFile.type);
     let media = container.getElementsByClassName("media");
-    setUI(media, mime, inputFile, container);
+    //removed mime <==> mimeType
+    setUI(media, inputFile, container);
 
 }
 
-function setUI ( mediaObjs, mimeType, mediaFile, mediaContainer ) {
+//Remove mimeType check while working on carousel
+function setUI ( mediaObjs, mediaFile, mediaContainer ) {
 
-    if( mimeType === 0){
+    const carouselCont = document.getElementById("col-carousel-container");
+    const carouselInner = document.getElementById("video-frames");
+    //if( mimeType === 0){
 
-        const img = document.createElement("img");
-        file_reader.addEventListener("load", function () {
-            img.src = file_reader.result;
-        }, false);
+        if ( mediaFile.length > 0 ) {
 
-        if ( mediaFile ) {
+            /**
+             * Fix: file_reader is still busy when trying to read next file
+             * Uncaught DOMException: Failed to execute 'readAsDataURL' on 'FileReader': The object is already busy reading Blobs.
+             * possible fix readyState change conditional return to exit callback
+             **/
+            file_reader.addEventListener("load", function () {
+                let img = document.createElement("img");
+                img.src = file_reader.result;
+                img.onload = function() {
+                    setCarousel( carouselInner, this);
+                    const defaultDisplay = document.getElementById("default");
+                    defaultDisplay.style.display = "none";
+                    carouselCont.style.display = "block";
+                };
+            }, false);
 
-            file_reader.readAsDataURL(mediaFile);
-            img.onload = function() {
-                drawImg(mediaObjs[1],this);
-            };
+            for ( let i=0; i < mediaFile.length; i++ ) {
+                
+                file_reader.readAsDataURL(mediaFile[i]);
+            }
 
         }
 
-    }else if( mimeType === 1){
+    /*}else if( mimeType === 1){
 
         file_reader.addEventListener("load", function () {
             mediaObjs[0].preload = "auto";
@@ -64,10 +79,19 @@ function setUI ( mediaObjs, mimeType, mediaFile, mediaContainer ) {
 
         }
 
-    }
+    }*/
 
 }
 
+function setCarousel ( inner, media ) {
+
+    const carouselDiv = document.createElement("div");
+
+    carouselDiv.className = "item active";
+    carouselDiv.appendChild(media);
+    inner.appendChild(carouselDiv);
+
+}
 function initVideoUI ( video ) {
 
     /**
@@ -142,7 +166,8 @@ function initVideoUI ( video ) {
         }
     	else {
             //getting a nodelist of the newly made canvas elements
-            let canvas = document.getElementsByClassName("frame-canvas");
+            //let canvas = document.getElementsByClassName("frame-canvas");
+            let canvas = document.getElementsByClassName("carousel-item");
             const desCanvas = document.getElementById("selected-frame");
     		for( let i=0; i<canvas.length; i++ ) {
     		    canvas[i].addEventListener("click", function(e){
@@ -157,7 +182,8 @@ function initVideoUI ( video ) {
 
                 if(framesArea.innerHTML == "Video frames appear here") framesArea.innerHTML = '';
                     let c = document.createElement("canvas");
-                    c.className = "carousel-item frame-canvas";
+                    //c.className = "carousel-item frame-canvas";
+                    c.className = "carousel-item";
 
                     let ctx = c.getContext("2d");
                     c.width = 220;

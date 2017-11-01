@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css" type="text/css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="js/main.js"></script>
     </head>
     
     <body>
-        <div class="container-fluid">
+
+        <div id="main-container" class="container-fluid">
             <div id="head-content" class="row">
                 <div id="file-choice-container" class="col">
-                    <input type="file" id="file" class="form-control"/>
+                    <input type="file" id="file" class="form-control" multiple>
                     <button id="submit" class="btn btn-primary">Submit</button>
                 </div>
                 
@@ -51,7 +53,6 @@
                         </div>
                     </span>
                     <video class="media" id="video"></video>
-                    <canvas class="media" id="image"></canvas>
                 </div>
 
                 <div id="frame-container" class="col-md-8">Place holder for selected frame
@@ -62,21 +63,32 @@
 
             </div>
 
-            <div id="row-carousel-container" class="row">
-                <div id="col-carousel-container" class="col-md-12">
-                    <div id="frames" class="carousel slide" data-ride="carousel">
-                        <div id="video-frames" class="carousel-inner">Video frames appear here</div>
+            <div id="row-carousel-container" class="row collaspse">
+
+                <div id="default"><h3>Media Area</h3></div>
+
+                <div id="carouse-progressbar" class="col-md-6 progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="0"
+                  aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                  </div>
+                </div>
+
+                <div id="col-carousel-container" class="col-md-6 h-100 mx-auto">
+                    <div id="frames" class="carousel slide h-100 w-100" data-ride="carousel">
+                        <div id="video-frames" class="carousel-inner h-100 w-100"></div>
                     </div>
-                    
+
                     <a class="carousel-control-prev" href="#frames" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
-                    
+
                     <a class="carousel-control-next" href="#frames" data-slide="next">
                         <span class="carousel-control-next-icon"></span>
                     </a>
                 </div>
             </div>
+
         </div>
+
     </body>
 </html>
