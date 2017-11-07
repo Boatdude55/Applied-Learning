@@ -31,34 +31,66 @@ function setUI ( mediaObjs, mediaFile, mediaContainer ) {
 
     const carouselCont = document.getElementById("col-carousel-container");
     const carouselInner = document.getElementById("video-frames");
+    const defaultDisplay = document.getElementById("default");
     //if( mimeType === 0){
+    
+    function readAndAdd ( file ) {
+    
+      let reader = new FileReader();
+    
+      reader.addEventListener("load", function () {
+          
+        let img = document.createElement("img");
+    
+        if ( this.readyState == 2 ) {
+            img.src = reader.result;
+        }
+            img.onload = function () {
+                setCarousel( carouselInner, this);
+            };
+      }, false);
+    
+      reader.readAsDataURL(file);
+    }
+    
+    if ( mediaFile ) {
+    
+    defaultDisplay.style.display = "none";
+    [].forEach.call(mediaFile, readAndAdd);
+    carouselCont.style.display = "block";
 
+    }
+
+} 
+/*
         if ( mediaFile.length > 0 ) {
 
             /**
              * Fix: file_reader is still busy when trying to read next file
              * Uncaught DOMException: Failed to execute 'readAsDataURL' on 'FileReader': The object is already busy reading Blobs.
              * possible fix readyState change conditional return to exit callback
-             **/
-            file_reader.addEventListener("load", function () {
+             *
+            file_reader.addEventListener("loadend", function () {
                 let img = document.createElement("img");
-                img.src = file_reader.result;
-                img.onload = function() {
-                    setCarousel( carouselInner, this);
-                    const defaultDisplay = document.getElementById("default");
-                    defaultDisplay.style.display = "none";
-                    carouselCont.style.display = "block";
-                };
+
+                if ( this.readyState == 2 ) {
+                    img.src = file_reader.result;
+                }
+                    img.onload = function () {
+                        setCarousel( carouselInner, this);
+                        const defaultDisplay = document.getElementById("default");
+                        defaultDisplay.style.display = "none";
+                    };
             }, false);
 
             for ( let i=0; i < mediaFile.length; i++ ) {
                 
                 file_reader.readAsDataURL(mediaFile[i]);
             }
-
+            carouselCont.style.display = "block";
         }
 
-    /*}else if( mimeType === 1){
+   }else if( mimeType === 1){
 
         file_reader.addEventListener("load", function () {
             mediaObjs[0].preload = "auto";
@@ -79,15 +111,15 @@ function setUI ( mediaObjs, mediaFile, mediaContainer ) {
 
         }
 
-    }*/
+    }
 
-}
+}*/
 
 function setCarousel ( inner, media ) {
 
     const carouselDiv = document.createElement("div");
 
-    carouselDiv.className = "item active";
+    carouselDiv.className = "item";
     carouselDiv.appendChild(media);
     inner.appendChild(carouselDiv);
 

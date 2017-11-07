@@ -1,0 +1,118 @@
+html, body, container{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: rgb(255,255,255);
+    box-sizing: border-box;
+}
+
+.header{
+    height: 30%;
+    width: 100%;
+    text-align: center;
+}
+
+#information div{
+    color: rgb(0, 0, 0);
+    font: fantasy;
+    font-size: larger; 
+}
+
+#information span{
+    color: rgb(255, 0, 255);
+    font-size: larger;
+}
+
+.main{
+    height: 70%;
+    width: 100%;
+}
+
+.nav-container{
+    height: 0%;
+    width: 100%;
+}
+
+.menu{
+    width: 70%;
+    height: 50%;
+    float: left;
+    overflow: hidden;
+}
+.nav-item{
+    width: 100px;
+    height: 100px;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    opacity: 1;
+    font-size: 50px;
+    border: solid;
+}
+
+.nav-item span{
+    position: absolute;
+    bottom: 25%;
+    right: 25%;
+    left: 25%;
+    text-align: center;
+    font-size: inherit;
+    color: rgb(0, 0, 0);
+}
+/*Colorful version*/
+#options{
+    width: 100%;
+    height: 500px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+#menu{
+    border-color: rgb(255,255,0);
+    position: absolute;
+    top: 70px;
+    left: 55px
+}
+#home{
+    border-color: rgb(50,80,255);
+    position: absolute;
+    top: 250px;
+    left: 50px
+}
+#resume{
+    border-color: rgb(255,150,50);
+    position: absolute;
+    top: 70px;
+    left: 250px
+}
+#projects{
+    border-color: rgb(100,255,100);
+    position: absolute;
+    top: 220px;
+    left: 210px
+}
+
+.about-container{
+    height: 75%;
+    width: 100%;
+    position: relative;
+}
+.about-container div{
+    float: left;
+    margin: 20px;
+}
+.image-container{
+    width: 40%;
+    height: 60%;
+    top: 25%;
+    
+}
+
+#image-item{
+    width: 100%;
+    height: 100%;
+}

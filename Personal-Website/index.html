@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+        <head>
+                <meta charset="UTF-8"/>
+                <meta http-equiv="content-type" content="text/html"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <!--Font Awesome-->
+                <script src="https://use.fontawesome.com/c23d44de98.js"></script>
+
+                <!--jQuery and GreenSock-->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/plugins/CSSPlugin.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/easing/EasePack.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js"></script>
+
+                <!--Bootstrap-->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+                
+                <link rel="stylesheet" href="index.css" type="text/css" />
+                <title>Ivan Mucyo Ngabo Website</title>
+
+        </head>
+
+        <body>
+                <div class="container-fluid">
+
+                    <div class="row header">
+                        <div class="col-md-12" id="information">
+                            <div>Who:   <span id="name">Ivan Mucyo Ngabo</span></div>
+                            <div>Contact:   <span id="email">ivanm3@email.arizona.edu</span></div>
+                            <div>Where:   <span>Sohpmore @ University of Arizona</span></div>       
+                            <div>What: <span>
+                                    Information Science and Technology Major
+                                    <p>Mathematics Minor</p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row main">
+                        <div class="col-md-12 nav-container">
+                            <nav class="menu">
+                                <div id="options">
+                                    <div class="nav-item rounded-circle" id="menu" href="#options"><span class="fa fa-bars" data-toggle="collapse" href=".link"></span></div>
+                                    <div class="nav-item link rounded-circle" id="home" href="#"><span class="fa fa-home"></span></div>
+                                    <div class="nav-item link rounded-circle" id="resume" href="#"><span class="fa fa-file-text-o"></span></div>
+                                    <div class="nav-item link rounded-circle" id="projects" href="#"><span class="fa fa-wrench"></span></div>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="about-container">
+                            <div class="image-container">
+                                <img id="image-item" src="car.jpg">
+                            </div>
+                            <div class="content-container">
+                                Here
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <script type="text/javascript">
+
+                        'use strict';
+
+                        /**
+                         * Instead of CSS transforms I'll use GreenSock for JS transforms
+                         * Seems like it's more cross browser friendly
+                         * */
+                         
+                    $(document).ready(function () {
+
+                        let menuBtn = $("#menu");
+                        let homeBtn = $("#home");
+                        let resumeBtn = $("#resume");
+                        let projectsBtn = $("#projects");
+
+                        let navData = [
+                            {'show': true},
+                            {'srcX': menuBtn.position().left, 'srcY': menuBtn.position().top},
+                            {'X': homeBtn.position().left, 'Y': homeBtn.position().top},
+                            {'X': resumeBtn.position().left, 'Y': resumeBtn.position().top},
+                            {'X': projectsBtn.position().left, 'Y': projectsBtn.position().top}
+                        ];
+
+                            $(".nav-item").hover( function ( ) {
+
+                                    let brdColor = $(this).css("border-color");
+                                    $(this).children("span").css("color", "white");
+                                    $(this).css("background-color", brdColor);
+
+                            },
+                            function () {
+
+                                $(this).children("span").css("color", "black")
+                                $(this).css("background-color", "white");
+
+                            });
+
+                            $(menuBtn).click(function () {
+
+                                /**
+                                 * TweenLite solution kind of buggy might be overkill
+                                 * Fix: hover() is affecting the expand case
+                                 * Is a LOT smoother than jQuery.animate()
+                                 * */
+                                TweenLite.to(".link", 3, {
+                                        opacity: function () {
+
+                                            let visible = navData[0].show ? 0 : 1;
+                                            return visible;
+
+                                        },
+                                        top: function ( index ) {
+
+                                            let y = navData[index + 2].Y;
+                                            if ( navData[0].show === true ) y = navData[1].srcY;
+
+                                            return y;
+
+                                        },
+                                        left: function ( index ) {
+
+                                            let x = navData[index + 2].X;
+                                            if ( navData[0].show === true ) x = navData[1].srcX;
+
+                                            return x;
+
+                                        }
+                                });
+                                
+                                navData[0].show = navData[0].show ? false : true;
+                                /**
+                                 * Is reverse() less buggy
+                                 * Guessing it's overkill, must work best with TimeLine()
+                                 * 
+                                if ( navData[0].show === true) {
+                                    TweenLite.to(".link", 3, {
+                                            opacity: 0,
+                                            top: navData[1].srcY,
+                                            left: navData[1].srcX,
+                                            display: "none"
+                                    });
+                                    navData[0].show = false;
+
+                                }else {
+                                    
+                                    TweenLite.reverse(0);
+                                    navData[0].show = true;
+                                    
+                                }*/
+                                
+                                /**
+                                 * jQuery animate has more bugs, jumps a lot; will try step function for fix later
+                                 * 
+                                $(".link").animate({
+                                    opacity: function () {
+
+                                            let visible = navData[0].show ? 0 : 1;
+                                            return visible;
+
+                                        },
+                                        top: function ( index ) {
+
+                                            let y = navData[index + 2].Y;
+                                            if ( navData[0].show === true ) y = navData[1].srcY;
+
+                                            return y;
+
+                                        },
+                                        left: function ( index ) {
+
+                                            let x = navData[index + 2].X;
+                                            if ( navData[0].show === true ) x = navData[1].srcX;
+
+                                            return x;
+
+                                        }
+                                }, 9000)*/
+                                
+                                
+
+                            });
+                    });
+                </script>
+        </body>
+
+</html>
+
