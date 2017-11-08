@@ -1,58 +1,145 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="style.css" type="text/css" />
-    </head>
-    <body>
-        <div id="matricesContainer">
+<html lang="en">
 
-            <div class="matrixContainer">
-                <table class = "matrixTable">
+        <head>
+                <meta charset = utf-8>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <script src="js/three.js"></script>
+                <script src="js/controls/OrbitControls.js"></script>
+                <script src="js/controls/TransformControls.js"></script>
+                <!--<link rel="stylesheet" href="css/style.css" type="text/css" />-->
+                <title>Tool for visualizing Linear Algebra</title>
+        <head>
+
+        <body>
+
+            <div id="matricesContainer">
+
+                <table class="matrixArea">
+
                     <tbody>
+
                         <tr>
-                            <td><input type="text" name="x1"/></td>
-                            <td><input type="text" name="x2"/></td>
-                        </tr>
+
+                                                <td>
+
+                                                        <div class="matrixContainer">
+
+                                                                <table class="matrix">
+
+                                                                        <tbody>
+
+                                                                                <tr>
+
+                                                                                         <td><input type="text" name="x1"></td>
+
+                                                                                         <td><input type="text" name="x2"></td>
+
+                                                                                 </tr>
+
+                                                                                <tr>
+
+                                                                                        <td><input type="text" name="x3"></td>
+
+                                                                                        <td><input type="text" name="x4"></td>
+
+                                                                                </tr>
+
+                                                                        </tbody>
+
+                                                                </table>
+
+                                                                <div class="matrixControls">
+
+                                                                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                                                                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                                                                        <button name="clearBtn">CLEAR</button>
+
+                                                                </div>
+
+                                                         </div>
+
+                                                </td>
+
+                                                <td>
+                                                    <div class="matrixContainer">
+
+                                                                <table class="matrix">
+
+                                                                        <tbody>
+
+                                                                                <tr>
+
+                                                                                        <td><input type="text" name="x1"></td>
+
+                                                                                        <td><input type="text" name="x2"></td>
+
+                                                                                </tr>
+
+                                                                                <tr>
+
+                                                                                        <td><input type="text" name="x3"></td>
+
+                                                                                        <td><input type="text" name="x4"></td>
+
+                                                                                </tr>
+
+                                                                        </tbody>
+
+                                                                </table>
+
+                                                                <div class="matrixControls">
+
+                                                                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                                                                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                                                                        <button name="clearBtn">CLEAR</button>
+
+                                                                </div>
+
+                                                        </div>
+                                                        </td>
+
+                                        </tr>
+                                        
                         <tr>
-                            <td><input type="text" name="x3"/></td>
-                            <td><input type="text" name="x4"/></td>
-                        </tr>
+
+                                                <div id="matrixOps">
+
+                                                        <table>
+
+                                                                <tr>
+
+                                                                        <td>
+
+                                                                                <button id="addMatrices">+</button>
+
+                                                                        </td>
+
+                                                                        <td>
+
+                                                                                <button id="subtractMatrices">-</button>
+
+                                                                        </td>
+
+                                                                </tr>
+
+                                                        </table>
+
+                                                </div>
+
+                                        </tr>
                     </tbody>
+
                 </table>
-            <span>CELL CONTROLS<button name="cleatBtn">CLEAR</button><button name="insertBtn">+</button><button name="rmvBtn">-</button></span>
+
             </div>
 
-            <div class="matrixContainer">
-                <table class = "matrixTable">
-                    <tbody>
-                        <tr>
-                            <td><input type="text" name="x1"/></td>
-                            <td><input type="text" name="x2"/></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="x3"/></td>
-                            <td><input type="text" name="x4"/></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <span>CELL CONTROLS<button name="cleatBtn">CLEAR</button><button name="insertBtn">+</button><button name="rmvBtn">-</button></span>
-            </div>
-        </div>
+            <script type="text/javascript" src="./js/matrixHandler.js"></script>
+            <script type="text/javascript"  src="./js/visualize.js"></script>
 
-        <table id="matrixOps">
-            <tbody>
-                <tr>
-                    <td><button>Cross Product</button></td>
-                    <td><button>Dot Product</button></td>
-                </tr>
-            </tbody>
-        </table>
-        <!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-        <script src="js/three.js"></script>
-        <script src="js/controls/OrbitControls.js"></script>
-        <script src="js/controls/TransformControls.js"></script>
-        <script type="text/javascript"  src="./js/main.js"></script>
-        
-    </body>
+        </body>
+
 </html>
+

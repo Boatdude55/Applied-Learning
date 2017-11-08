@@ -1,3 +1,7 @@
+/**
+ * The plan is to implement this leveraging node C++ addons
+ * This is more of a reference than anything
+ * */
 let additionTest = new ArrayBuffer([[1,0], [0,1]]);
 
 function addition ( vectors ) {

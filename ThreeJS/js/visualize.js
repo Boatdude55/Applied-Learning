@@ -167,10 +167,10 @@ function SceneHandler () {
     };
 }
 
-function addition ( lOperand ) {
+/*function addition ( lOperand ) {
 console.log(lOperand.geometry.vertices);
        lOperand.geometry.vertices[1].translate(-1,-2,-3);
-}
+}*/
 /////////////////////////////////////////Function/Obj Testing//////////////////////////////////
 	let newGrid = createGrid();
 
@@ -182,7 +182,7 @@ console.log(lOperand.geometry.vertices);
     points = matrixHandler.setVectorsData(testVectors);
 
     newVectors = matrixHandler.createVectors(points);
-    addition(newVectors[0]);
+    //addition(newVectors[0]);
     const sceneSetter = new SceneHandler();
 
     sceneSetter.addNewObj([newGrid, newVectors]);
