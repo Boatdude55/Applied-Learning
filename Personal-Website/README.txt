@@ -1,5 +1,5 @@
 Professional website showcasing knowledge and interests
-Frameworks:
+Libraries:
     jQuery
     Bootstrap
     FontAwesome
