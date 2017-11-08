@@ -1,8 +1,10 @@
 Professional website showcasing knowledge and interests
-Libraries:
-    jQuery
-    FontAwesome
-    GreenSock
+JS Libraries:
+    jQuery: DOM manipulation
+    GreenSock:  Animation
 
-Framework:
+css Framework:
      Bootstrap
+
+css Library:
+     FontAwesome
