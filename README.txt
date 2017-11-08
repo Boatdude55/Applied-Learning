@@ -1,4 +1,4 @@
-Hi I'm Ivan Mucyo Ngab; an Information Science and Tech undergrad at the University of Arizona
+Hi I'm Ivan Mucyo Ngabo; an Information Science and Tech undergrad @ the University of Arizona
 
 Description:
 
