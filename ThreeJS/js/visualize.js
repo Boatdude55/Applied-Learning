@@ -1,5 +1,5 @@
 const scene = new THREE.Scene();
-scene.background = new THREE.Color('rgb(100,100,100)');
+scene.background = new THREE.Color('rgb(0,0,0)');
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1, 1000 );
 
 const renderer = new THREE.WebGLRenderer();
