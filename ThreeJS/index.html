@@ -4,12 +4,10 @@
         <head>
                 <meta charset = utf-8>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-                <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
                 <script src="js/three.js"></script>
                 <script src="js/controls/OrbitControls.js"></script>
                 <script src="js/controls/TransformControls.js"></script>
-                <!--<link rel="stylesheet" href="css/style.css" type="text/css" />-->
+                <link rel="stylesheet" href="css/style.css" type="text/css" />
                 <title>Tool for visualizing Linear Algebra</title>
         <head>
 
@@ -17,122 +15,101 @@
 
             <div id="matricesContainer">
 
-                <table class="matrixArea">
+                <div class="matrixContainer">
 
-                    <tbody>
+                    <table class="matrix">
+
+                        <tbody>
+
+                            <tr>
+
+                                 <td><input type="text" name="x1"></td>
+
+                                 <td><input type="text" name="x2"></td>
+
+                             </tr>
+
+                            <tr>
+
+                                <td><input type="text" name="x3"></td>
+
+                                <td><input type="text" name="x4"></td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="matrixControls">
+
+                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                        <button name="clearBtn">CLEAR</button>
+
+                    </div>
+
+                </div>
+
+                <div class="matrixContainer">
+
+                    <table class="matrix">
+
+                        <tbody>
+
+                            <tr>
+
+                                <td><input type="text" name="x1"></td>
+
+                                <td><input type="text" name="x2"></td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td><input type="text" name="x3"></td>
+
+                                <td><input type="text" name="x4"></td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <div class="matrixControls">
+
+                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
+                        <button name="clearBtn">CLEAR</button>
+
+                    </div>
+
+                </div>
+
+                <div class="" id="matrixOps">
+
+                    <table>
 
                         <tr>
 
-                                                <td>
+                            <td>
 
-                                                        <div class="matrixContainer">
+                                <button id="addMatrices">+</button>
 
-                                                                <table class="matrix">
+                            </td>
 
-                                                                        <tbody>
+                            <td>
 
-                                                                                <tr>
+                                <button id="subtractMatrices">-</button>
 
-                                                                                         <td><input type="text" name="x1"></td>
+                            </td>
 
-                                                                                         <td><input type="text" name="x2"></td>
+                        </tr>
 
-                                                                                 </tr>
+                    </table>
 
-                                                                                <tr>
-
-                                                                                        <td><input type="text" name="x3"></td>
-
-                                                                                        <td><input type="text" name="x4"></td>
-
-                                                                                </tr>
-
-                                                                        </tbody>
-
-                                                                </table>
-
-                                                                <div class="matrixControls">
-
-                                                                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
-                                                                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
-                                                                        <button name="clearBtn">CLEAR</button>
-
-                                                                </div>
-
-                                                         </div>
-
-                                                </td>
-
-                                                <td>
-                                                    <div class="matrixContainer">
-
-                                                                <table class="matrix">
-
-                                                                        <tbody>
-
-                                                                                <tr>
-
-                                                                                        <td><input type="text" name="x1"></td>
-
-                                                                                        <td><input type="text" name="x2"></td>
-
-                                                                                </tr>
-
-                                                                                <tr>
-
-                                                                                        <td><input type="text" name="x3"></td>
-
-                                                                                        <td><input type="text" name="x4"></td>
-
-                                                                                </tr>
-
-                                                                        </tbody>
-
-                                                                </table>
-
-                                                                <div class="matrixControls">
-
-                                                                        <div class="colControls">Cols: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
-                                                                        <div class="rowControls">Rows: <button name="insertBtn">+</button><button name="rmvBtn">-</button></div>
-                                                                        <button name="clearBtn">CLEAR</button>
-
-                                                                </div>
-
-                                                        </div>
-                                                        </td>
-
-                                        </tr>
-                                        
-                        <tr>
-
-                                                <div id="matrixOps">
-
-                                                        <table>
-
-                                                                <tr>
-
-                                                                        <td>
-
-                                                                                <button id="addMatrices">+</button>
-
-                                                                        </td>
-
-                                                                        <td>
-
-                                                                                <button id="subtractMatrices">-</button>
-
-                                                                        </td>
-
-                                                                </tr>
-
-                                                        </table>
-
-                                                </div>
-
-                                        </tr>
-                    </tbody>
-
-                </table>
+                </div>
 
             </div>
 

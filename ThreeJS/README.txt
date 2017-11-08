@@ -24,4 +24,3 @@ This project is a Linear Algebra Visual tool.
                 
     Libraries and Frame works:  jQuery: DOM handling
                                 ThreeJS: Visualizing, WebGL
-                                PureCSS: Very small, and simple
