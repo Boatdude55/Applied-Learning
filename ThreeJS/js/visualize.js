@@ -167,32 +167,6 @@ function SceneHandler () {
     };
 }
 
-/*function addition ( lOperand ) {
-console.log(lOperand.geometry.vertices);
-       lOperand.geometry.vertices[1].translate(-1,-2,-3);
-}*/
-/////////////////////////////////////////Function/Obj Testing//////////////////////////////////
-	let newGrid = createGrid();
-
-    let testVectors = [[1, 2, 3], [4, 5, 2], [7, 5, 9]];
-    
-    const matrixHandler = new MatrixHandler();
-    let points, newVectors;
-
-    points = matrixHandler.setVectorsData(testVectors);
-
-    newVectors = matrixHandler.createVectors(points);
-    //addition(newVectors[0]);
-    const sceneSetter = new SceneHandler();
-
-    sceneSetter.addNewObj([newGrid, newVectors]);
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-    camera.position.z = 20;
-    camera.position.y = 10;
-    scene.rotation.y = 0.5;
-	camera.lookAt(scene.position);
-
 const viewControls = new THREE.OrbitControls(camera, renderer.domElement);
 viewControls.addEventListener('change', render);
 // remove when using animation loop
@@ -218,4 +192,27 @@ function render(){
 	renderer.render(scene, camera);
 
 }
-animator();
+/////////////////////////////////////////Function/Obj Testing//////////////////////////////////
+	let newGrid = createGrid();
+
+    let testVectors = [[1, 2, 3], [4, 5, 2], [7, 5, 9]];
+    
+    const matrixHandler = new MatrixHandler();
+    let points, newVectors;
+
+    points = matrixHandler.setVectorsData(testVectors);
+
+    newVectors = matrixHandler.createVectors(points);
+    //addition(newVectors[0]);
+    const sceneSetter = new SceneHandler();
+
+    sceneSetter.addNewObj([newGrid, newVectors]);
+    
+    
+    camera.position.z = 20;
+    camera.position.y = 10;
+    scene.rotation.y = 0.5;
+	camera.lookAt(scene.position);
+
+    animator();
+////////////////////////////////////////////////////////////////////////////////////////////////
